@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebApplication",
+    "operatingSystem": "All",
+    "name": "Chords Visualizer",
+    "url": "http://chordsvisualizer.com/",
+    "description": "Learn Guitar Chord Structure The Easy Way!",
+    "applicationCategory": "Music",
+    "genre": "guitar"
+  }
+  </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="chordsApp.js"></script>
+  <script type='text/javascript' src="chordsData.json"></script>
+	<link rel="stylesheet" type="text/css" href="chordsApp.css">
+  <title>Guitar Chord Visualizer - Learn Guitar Chord Structure The Easy Way!</title>
+  <meta name="description" content="Guitar Chords Visualizer is a tool that is designed to help beginner to advanced players better understand chord structure on guitar."/>
+</head>
+<body>
+	<header>
+		<a href="index.html" title="Go to Home Page"><h1>Guitar Chords Visualizer</h1></a>
+		<ul>
+			<li><a href="index.html" title="Go to Home Page">Home</a></li>
+			<li><a href="About.html" title="Go to About Page">About</a></li>
+			<li><a href="DonateContact.html" title="Go to Donate/Contact Page">Donate/Contact</a></li>
+		</ul>
+	</header>
+	<div class='header'>
+  <div class="dropdown">
+  <button class = 'chord'>Select a Chord</button>
+      <div class="dropdown-content">
+    <button class='chordSelect' value='C'>C</button>
+    <button class='chordSelect' value='D'>D</button>
+    <button class='chordSelect' value='E'>E</button>
+    <button class='chordSelect' value='F'>F</button>
+    <button class='chordSelect' value='G'>G</button>
+    <button class='chordSelect' value='A'>A</button>
+    <button class='chordSelect' value='B'>B</button>     
+  </div>
+  </div>
+<div class="dropdown" id='mod'>
+  <button class = 'mod'>Select a Modification</button>
+      <div class="dropdown-content" id="modificationDropdown">
+    <div class='dropdownSection'>
+    <h2>Triads</h2>
+    <button class='clear' value=''>clear</button>
+    <button class='modSelect' value='m'>Minor</button>
+    <button class='modSelect' value='five'>5</button>
+    <button class='modSelect' value='susTwo'>sus2</button>
+    <button class='modSelect' value='susFour'>sus4</button>
+    <button class='modSelect' value='+'>+</button>
+    <button class='modSelect' value='°'>°</button>
+	</div>
+	<div class='dropdownSection'>
+    <h2>Tetrads</h2>
+    <button class='clear' value=''>clear</button>
+    <button class='modSelect' value='seven'>7</button>
+    <button class='modSelect' value='sevenSusFour'>7sus4</button>  
+    <button class='modSelect' value='mSeven'>m7</button>  
+    <button class='modSelect' value='MajSeven'>Maj7</button>  
+    <button class='modSelect' value='mSevenbFive'>m7b5</button>  
+    <button class='modSelect' value='°Seven'>°7</button>  
+    <button class='modSelect' value='+Seven'>+7</button>  
+    <button class='modSelect' value='mMajSeven'>mMaj7</button>  
+    <button class='modSelect' value='addNine'>add9</button>
+    <button class='modSelect' value='mAddNine'>madd9</button>
+    <button class='modSelect' value='six'>6</button>
+    <button class='modSelect' value='mSix'>m6</button>
+    <button class='modSelect' value='mbSix'>mb6</button>
+	</div>
+	<div class='dropdownSection'>
+    <h2>Extended<br>(CS)</h2>
+    <button class='modSelect' value='nine'>9</button>
+    <button class='modSelect' value='eleven'>11</button>
+    <button class='modSelect' value='thirteen'>13</button>
+    <button class='modSelect' value='nineSusFour'>9sus4</button>
+    <button class='modSelect' value='thirteenSusFour'>13sus4</button>
+    <button class='modSelect' value='mNine'>m9</button>
+    <button class='modSelect' value='mEleven'>m11</button>
+    <button class='modSelect' value='mEleven'>m13</button>
+    <button class='modSelect' value='mMajNine'>mMaj9</button>
+    <button class='modSelect' value='MajNine'>Maj9</button>
+    <button class='modSelect' value='MajThirteen'>Maj13</button>
+    <button class='modSelect' value='+Nine'>+9</button>
+	</div>
+	<div class='dropdownSection'>
+    <h2>Altered<br>(CS)</h2>
+    <button class='modSelect' value='MajSevenSharpEleven'>Maj7#11</button>
+    <button class='modSelect' value='nineFlatFive'>9b5</button>
+    <button class='modSelect' value='sevenFlatNine'>7b9</button>
+    <button class='modSelect' value='sevenSharpNine'>7#9</button>
+    <button class='modSelect' value='sevenFlatFiveSharpNine'>7b5#9</button>
+    <button class='modSelect' value='sevenSharpEleven'>7#11</button>
+    <button class='modSelect' value='sevenFlatFive'>7b5</button>
+    <button class='modSelect' value='mNineFlatFive'>m9b5</button>
+    <button class='modSelect' value='+SevenFlatNine'>+7b9</button>
+    <button class='modSelect' value='+SevenSharpNine'>+7#9</button>
+    </div>          
+  </div>
+  </div>
+<label class="container">Sharp
+  <input id='sharp' type="checkbox">
+  <span class="checkmark"></span>
+</label>
+</div>
+  <div class='guitar'>
+  <div class='top'>
+    <div class='head'>
+    </div>
+    <div class='nut'><div class='letter'>e</div><div class='letter'>B</div><div class='letter'>G</div><div class='letter'>D</div><div class='letter'>A</div><div class='letter'>E</div></div>
+  </div>
+  <div class='neck'>
+    <div class='fretboard' id='f1'>
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id='f2'>
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f3">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+            <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f4">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f5">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f6">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f7">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f8">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f9">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f10">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f11">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f12">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='markerDouble'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f13">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f14">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f15">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f16">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f17">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f18">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f19">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f20">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f21">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='marker'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f22">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f23">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+    </div>
+    <div class='fret'></div>
+    <div class='fretboard' id="f24">
+      <div class='string' id='e'></div>
+      <div class='string' id='b'></div>
+      <div class='string' id='g'></div>
+      <div class='string' id='d'></div>
+      <div class='string' id='a'></div>
+      <div class='string' id='E'></div>
+      <div class='markerDouble'></div>
+    </div>
+  </div>
+    <div class='body'></div>
+</div>
+<div class="help-button-wrapper">
+  <div class='help-content'>
+    <h2> How to Use</h2>
+    <p> Simply select a chord and it's modifiers then <span class='desktopText'>hover</span><span class='mobileText'>tap</span><span class='mobileOrDesktopText'>hover/tap</span> over the guitar to to view the chord formation at that position.<a href='About.html' title='Lean more on About page'>Still confused?</a></p>
+  </div>
+    
+  <button class="help-button">
+    <span>?</span>
+    Get Help
+  </button>
+</div>
+</body>
+</html>
+
+
+

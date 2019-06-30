@@ -82,7 +82,7 @@ $headers = 'From: '.$email_from."\r\n".
   <section>
     <h2>Thank you for reaching out! I will be in touch.</h2>
     <p>If for whatever reason you believe this message was not sent correctly, feel free to email me directly at jnelson3465@gmail.com</p>
-    <form action='./chordsApp.html'>
+    <form action='chordsApp.html'>
      <button class="btnSuccess">Home</button>
    </form>
 </body>
